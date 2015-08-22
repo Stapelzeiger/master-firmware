@@ -13,6 +13,7 @@
 
 #define MEM_ALIGNMENT                   4
 
+#define LWIP_THREAD_STACK_SIZE          1024
 #define TCPIP_THREAD_STACKSIZE          4096
 #define TCPIP_MBOX_SIZE                 MEMP_NUM_PBUF
 
