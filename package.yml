@@ -41,6 +41,7 @@ target.arm:
     - src/fault_debug.c
     - src/node_tracker.c
     - src/malloc_lock.c
+    - src/timing_trace.c
 
 source:
     - src/unix_timestamp.c

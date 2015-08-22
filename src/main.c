@@ -26,6 +26,7 @@
 #include "differential_base.h"
 #include "stream.h"
 #include "malloc_lock.h"
+#include "timing_trace.h"
 #include <lwipthread.h>
 
 
@@ -49,6 +50,7 @@ static const ShellConfig shell_cfg1 = {
 void panic_hook(const char *reason)
 {
     (void) reason;
+    timing_trace_panic_trigger();
     palClearPad(GPIOC, GPIOC_LED);
     palSetPad(GPIOF, GPIOF_LED_READY);
     palSetPad(GPIOF, GPIOF_LED_DEBUG);

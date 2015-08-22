@@ -41,13 +41,13 @@ static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[]) {
         chprintf(chp, "Usage: threads\r\n");
         return;
     }
-    chprintf(chp, "    addr    stack prio refs     state       time\r\n");
+    chprintf(chp, "    addr    stack prio refs     state       time  id name\r\n");
     tp = chRegFirstThread();
     do {
-        chprintf(chp, "%.8lx %.8lx %4lu %4lu %9s %10lu %s\r\n",
+        chprintf(chp, "%.8lx %.8lx %4lu %4lu %9s %10lu  %2d %s\r\n",
                 (uint32_t)tp, (uint32_t)tp->p_ctx.r13,
                 (uint32_t)tp->p_prio, (uint32_t)(tp->p_refs - 1),
-                states[tp->p_state], (uint32_t)tp->p_time, tp->p_name);
+                states[tp->p_state], (uint32_t)tp->p_time, tp->thread_num_id, tp->p_name);
         tp = chRegNextThread(tp);
     } while (tp != NULL);
 }

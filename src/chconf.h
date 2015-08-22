@@ -409,7 +409,7 @@
  * @details User fields added to the end of the @p thread_t structure.
  */
 #define CH_CFG_THREAD_EXTRA_FIELDS                                          \
-  /* Add threads custom fields here.*/
+  int thread_num_id;
 
 /**
  * @brief   Threads initialization hook.
@@ -419,7 +419,8 @@
  *          the threads creation APIs.
  */
 #define CH_CFG_THREAD_INIT_HOOK(tp) {                                       \
-  /* Add threads initialization code here.*/                                \
+  static int thread_nbr = 0;                                                \
+  tp->thread_num_id = thread_nbr++;                                         \
 }
 
 /**
@@ -439,7 +440,8 @@
  * @details This hook is invoked just before switching between threads.
  */
 #define CH_CFG_CONTEXT_SWITCH_HOOK(ntp, otp) {                              \
-  /* System halt code here.*/                                               \
+  void timing_trace_thread(int thd_nbr);                                    \
+  timing_trace_thread(ntp->thread_num_id);                                  \
 }
 
 /**
